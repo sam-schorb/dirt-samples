@@ -1,0 +1,28 @@
+dedupe:
+  enabled: true
+  max_per_folder: 20
+  min_folder_size: 21
+  method: kmeans
+  random_seed: 0
+normalize:
+  enabled: true
+  peak_ceiling_dbfs: -1.0
+  use_active_rms: true
+  active_rms_floor_db: -60.0
+  folder_targets_rms_dbfs:
+    bd: -10.0
+    bdu: -10.0
+    ch: -18.0
+    oh: -18.0
+    sd: -14.0
+  fallback_rms_dbfs: -16.0
+features:
+  similarity_columns:
+    - spec_centroid_mean
+    - spec_spread_mean
+    - spec_flatness_mean
+    - mfcc01_mean
+    - mfcc02_mean
+    - mfcc03_mean
+    - mfcc04_mean
+    - mfcc05_mean

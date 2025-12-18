@@ -1,0 +1,3 @@
+samples_root: "/path/to/samples"
+flucoma_bin_dir: "/Users/clam/tools/flucoma-cli/1.0.9/bin"
+default_jobs: 4

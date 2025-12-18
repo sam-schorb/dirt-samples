@@ -1,0 +1,26 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*.log
+
+# Local config
+config/config.yaml
+
+# Data outputs (keep key artifacts)
+data/**
+!data/features/
+!data/features/**
+!data/knn/
+!data/knn/**
+!data/logs/
+!data/logs/**
+.pack_backup/
+/.pack_tmp_backup/
+/.pack_tmp_pruned/
+_pruned/
+plans/
