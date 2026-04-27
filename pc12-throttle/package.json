@@ -1,0 +1,15 @@
+{
+  "name": "pc12-throttle",
+  "version": "1.0.0",
+  "main": "pc12-throttle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@julusian/midi": "^3.6.1"
+  }
+}
