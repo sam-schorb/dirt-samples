@@ -29,14 +29,14 @@ register('acc3', pat =>
 // FILLS
 // usage: pat.fill1(), pat.fill2()
 // ---------------------------------------------------------
-register('fill1', pat =>
-  pat.every(4, off(1/8, x => x.add(0)))
+register('fill1', (n, pat) =>
+  pat.every(n, off(1/8, x => x.add(0).hpf(200)))
 )
 
-register('fill2', pat =>
-  pat.every(4, off(1/8, x =>
-    x.contract("2 4").pace(4).mask("1 0 1 0")
-  ))
+register('fill2', (n, pat) =>
+  pat.every(n, off(1/8, x =>
+    x.contract("2 4").pace(1).mask("1 0 1 0 1 0 1 0")
+  )).hpf(200)
 )
 
 
@@ -191,61 +191,72 @@ window.incidentals =
     .iter(4)
     .shuffle(8)
 
-// MELODIES
-// usage in REPL: $: mel1.s("wt_10") etc.
-window.mel1  = note("0 ~ ~ 1  ~ 6 0 ~  ~ ~ ~ 1  3 7 ~ ~ ").add(note(36))
-window.mel2  = note("1 ~ 0 3  ~ 7 ~ ~  7 ~ ~ 7  ~ ~ ~ ~ ").add(note(36))
-window.mel3  = note("1 ~ 6 5  ~ 0 ~ 0  ~ 1 13 ~  ~ ~ ~ ~ ").add(note(36))
-window.mel4  = note("~ ~ ~ 1  0 8 ~ ~  ~ 13 5 ~  0 6 ~ ~ ").add(note(36))
-window.mel5  = note("~ ~ 0 1  ~ ~ 6 ~  ~ 1 3 ~  2 5  ~ ~ ").add(note(36))
-window.mel6  = note("6 ~ ~ -5  ~ ~ 6 ~  ~ -5 5 ~  ~ 1 ~ ~  6 ~ ~ -5  ~ ~ 6 ~  ~ -5 13 ~  ~ 1 ~ ~  ").slow(2).add(note(36))
-window.mel7  = note("6 0 ~ ~  ~ ~ 6 ~  ~ 0 ~ ~  6 ~ ~ ~  0 ~ 6 ~  ~ ~ ~ ~  0 ~ ~ 6  ~ ~ 0 ~ ").slow(2).add(note(36))
-window.mel8  = note("0 ~ 1 7  ~ ~ 6 ~  0 1 ~ 7  ~ ~ 6 ~ ").add(note(36))
-window.mel9  = note("13 ~ ~ 1  ~ 7 ~ 6").fast(2).add(note(36))
-window.mel10 = note("0 13 ~ 1  ~ ~ ~ ~  ").fast(2).add(note(36))
-window.mel11 = note("0 ~ ~ ~  3 ~ ~ 7  ~ 3 -5 ~  0 ~ ~ ~ ").add(note(36))
-window.mel12 = note("0").add(note(36)).gain(0)
-
-window.polymel1  = note("{0 ~ ~ 1  ~ 6 0 ~  ~ ~ ~ 1  3 7}%16").add(note(36))
-window.polymel2  = note("{1 ~ 0 3  ~ 7 ~ ~  7 ~ ~ 7  ~ ~}%16").add(note(36))
-window.polymel3  = note("{1 ~ 6 5  ~ 0 ~ 0  ~ 1 13 ~  }%16").add(note(36))
-window.polymel4  = note("{~ ~ ~ 1  0 8 ~ ~  ~ 13 }%16").add(note(36))
-window.polymel5  = note("{~ ~ 0 1  ~ ~ 6 ~  ~ 1 3 ~   }%16").add(note(36))
-window.polymel6  = note("{6 ~ ~ -5  ~ ~ 6 ~  ~ -5 5 ~  ~ 1 ~ ~  6 ~ ~ -5  ~ ~ 6 ~  ~ -5 13 ~    }%32").slow(2).add(note(36))
-window.polymel7  = note("{6 0 ~ ~  ~ ~ 6 ~  ~ 0 ~ ~  6 ~ ~ ~  0 ~ 6 ~  ~ ~ ~ ~   }%32").slow(2).add(note(36))
-window.polymel8  = note("{0 ~ 1 7  ~ ~ 6 ~  0 1 ~ 7  ~ ~ }%16").add(note(36))
-window.polymel9  = note("{13 ~ ~ 1  ~ 7 }%8").fast(2).add(note(36))
-window.polymel10 = note("{0 13 ~ 1  ~ ~ }%8").fast(2).add(note(36))
-window.polymel11 = note("{0 ~ ~ ~  3 ~ ~ 7  ~ 3 -5 ~  0 ~}%16").add(note(36))
-window.polymel12 = note("0").add(note(36)).gain(0)
-
-
-window.pat1  = "{1 ~ ~ 1  ~ 1 1 ~  ~ ~ ~ 1  1 1 ~ ~}%16"
-window.pat2  = "{1 ~ 1 1  ~ 1 ~ ~  1 ~ ~ 1  ~ ~ ~ ~}%16"
-window.pat3  = "{1 ~ 1 1  ~ 1 ~ 1  ~ 1 1 ~  ~ ~ ~ ~}%16"
-window.pat4  = "{~ ~ ~ 1  1 1 ~ ~  ~ 1 1 ~  1 1 ~ ~}%16"
-window.pat5  = "{~ ~ 1 1  ~ ~ 1 ~  ~ 1 1 ~  1 1  ~ ~}%16"
-window.pat6  = "{1 ~ ~ 1  ~ ~ 1 ~  ~ 1 1 ~  ~ 1 ~ ~  1 ~ ~ 1  ~ ~ 1 ~  ~ 1 1 ~  ~ 1 ~ ~}%32".slow(2)
-window.pat7  = "{1 1 ~ ~  ~ ~ 1 ~  ~ 1 ~ ~  1 ~ ~ ~  1 ~ 1 ~  ~ ~ ~ ~  1 ~ ~ 1  ~ ~ 1 ~}%32".slow(2)
-window.pat8  = "{1 ~ 1 1  ~ ~ 1 ~  1 1 ~ 1  ~ ~ 1 ~}%16"
-window.pat9  = "{1 ~ ~ 1  ~ 1 ~ 1}%8".fast(2)
-window.pat10 = "{1 1 ~ 1  ~ ~ ~ ~}%8".fast(2)
-window.pat11 = "{1 ~ ~ ~  1 ~ ~ 1  ~ 1 1 ~  1 ~ ~ ~}%16"
-window.pat12 = note("0").add(note(36)).gain(0)
-
-
-
-window.polypat1  = "{1 ~ ~ 1  ~ 1 1 ~  ~ ~ ~ 1  1 1}%16"
-window.polypat2  = "{1 ~ 1 1  ~ 1 ~ ~  1 ~ ~ 1  ~ ~}%16"
-window.polypat3  = "{1 ~ 1 1  ~ 1 ~ 1  ~ 1 1 ~}%16"
-window.polypat4  = "{~ ~ ~ 1  1 1 ~ ~  ~ 1}%16"
-window.polypat5  = "{~ ~ 1 1  ~ ~ 1 ~  ~ 1 1 ~}%16"
-window.polypat6  = "{1 ~ ~ 1  ~ ~ 1 ~  ~ 1 1 ~  ~ 1 ~ ~  1 ~ ~ 1  ~ ~ 1 ~  ~ 1 1 ~}%32".slow(2)
-window.polypat7  = "{1 1 ~ ~  ~ ~ 1 ~  ~ 1 ~ ~  1 ~ ~ ~  1 ~ 1 ~  ~ ~ ~ ~}%32".slow(2)
-window.polypat8  = "{1 ~ 1 1  ~ ~ 1 ~  1 1 ~ 1  ~ ~}%16"
-window.polypat9  = "{1 ~ ~ 1  ~ 1}%8".fast(2)
-window.polypat10 = "{1 1 ~ 1  ~ ~}%8".fast(2)
-window.polypat11 = "{1 ~ ~ ~  1 ~ ~ 1  ~ 1 1 ~  1 ~}%16"
-window.polypat12 = note("0").add(note(36)).gain(0)
 
 // ---------------------------------------------------------
+// CANONICAL PATTERN DATA (no note(), no n())
+// everything is just strings
+// ---------------------------------------------------------
+
+// MELODIES (now just data)
+window.mel1  = "0 ~ ~ 1  ~ 6 0 ~  ~ ~ ~ 1  3 7 ~ ~"
+window.mel2  = "1 ~ 0 3  ~ 7 ~ ~  7 ~ ~ 7  ~ ~ ~ ~"
+window.mel3  = "1 ~ 6 5  ~ 0 ~ 0  ~ 1 13 ~  ~ ~ ~ ~"
+window.mel4  = "~ ~ ~ 1  0 8 ~ ~  ~ 13 5 ~  0 6 ~ ~"
+window.mel5  = "~ ~ 0 1  ~ ~ 6 ~  ~ 1 3 ~  2 5  ~ ~"
+window.mel6  = "6 ~ ~ -5  ~ ~ 6 ~  ~ -5 5 ~  ~ 1 ~ ~  6 ~ ~ -5  ~ ~ 6 ~  ~ -5 13 ~  ~ 1 ~ ~".slow(2)
+window.mel7  = "6 0 ~ ~  ~ ~ 6 ~  ~ 0 ~ ~  6 ~ ~ ~  0 ~ 6 ~  ~ ~ ~ ~  0 ~ ~ 6  ~ ~ 0 ~".slow(2)
+window.mel8  = "0 ~ 1 7  ~ ~ 6 ~  0 1 ~ 7  ~ ~ 6 ~"
+window.mel9  = "13 ~ ~ 1  ~ 7 ~ 6".fast(2)
+window.mel10 = "0 13 ~ 1  ~ ~ ~ ~".fast(2)
+window.mel11 = "0 ~ ~ ~  3 ~ ~ 7  ~ 3 -5 ~  0 ~ ~ ~"
+window.mel12 = "0"
+
+// POLYMELODIES
+window.polymel1  = "{0 ~ ~ 1  ~ 6 0 ~  ~ ~ ~ 1  3 7}%16"
+window.polymel2  = "{1 ~ 0 3  ~ 7 ~ ~  7 ~ ~ 7  ~ ~}%16"
+window.polymel3  = "{1 ~ 6 5  ~ 0 ~ 0  ~ 1 13 ~}%16"
+window.polymel4  = "{~ ~ ~ 1  0 8 ~ ~  ~ 13}%16"
+window.polymel5  = "{~ ~ 0 1  ~ ~ 6 ~  ~ 1 3 ~}%16"
+window.polymel6  = "{6 ~ ~ -5  ~ ~ 6 ~  ~ -5 5 ~  ~ 1 ~ ~  6 ~ ~ -5  ~ ~ 6 ~  ~ -5 13 ~}%32".slow(2)
+window.polymel7  = "{6 0 ~ ~  ~ ~ 6 ~  ~ 0 ~ ~  6 ~ ~ ~  0 ~ 6 ~  ~ ~ ~ ~}%32".slow(2)
+window.polymel8  = "{0 ~ 1 7  ~ ~ 6 ~  0 1 ~ 7  ~ ~}%16"
+window.polymel9  = "{13 ~ ~ 1  ~ 7}%8".fast(2)
+window.polymel10 = "{0 13 ~ 1  ~ ~}%8".fast(2)
+window.polymel11 = "{0 ~ ~ ~  3 ~ ~ 7  ~ 3 -5 ~  0 ~}%16"
+window.polymel12 = "0"
+
+
+// ---------------------------------------------------------
+// INTERPRETERS
+// ---------------------------------------------------------
+
+// 🎹 melodic (scale + octave)
+const mel = str =>
+  note(str)
+    .scale("minor")
+    .add(note(-12))
+
+// 🥁 sample selector (index pattern)
+const pat = str =>
+  n(str)
+
+// 🔳 binary mask (on/off from pattern)
+const bin = str =>
+  n(str).set(n(0))
+
+
+// ---------------------------------------------------------
+// USAGE EXAMPLES
+// ---------------------------------------------------------
+
+// $: mel(polymel3).s("wt_10")
+
+// $: mel(polymel3).s("bdsyn").hypno1(0.5,0.5).fill1(4)
+
+// $: sound("bdd:3*4").gain(3)
+
+// $: bin(mel1).s("cp").mask("1 0 0 0".slow(4))
+
+// $: mel(polymel4).s("lead:2").slow(8).off(0.125, x => x.note(add(7))).every(2, jux(rev)).superimpose(x => x.fast(2)).speed(0.5).gain(0.5).chunk(4, hurry(2))
+
+

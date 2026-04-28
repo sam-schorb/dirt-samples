@@ -181,53 +181,24 @@
   ],
   "ch": [
     "ch/ch1.wav",
-    "ch/ch2.wav",
     "ch/ch3.wav",
-    "ch/ch4.wav",
     "ch/ch5.wav",
     "ch/ch6.wav",
     "ch/ch7.wav",
-    "ch/ch8.wav",
-    "ch/chgran11.wav",
-    "ch/chgran12.wav",
     "ch/chgran13.wav",
-    "ch/chgran15.wav",
     "ch/chgran18.wav",
-    "ch/chgran2.wav",
-    "ch/chgran20.wav",
-    "ch/chgran21.wav",
-    "ch/chgran22.wav",
     "ch/chgran23.wav",
-    "ch/chgran24.wav",
-    "ch/chgran25.wav",
     "ch/chgran26.wav",
     "ch/chgran27.wav",
-    "ch/chgran3.wav",
-    "ch/chgran30.wav",
-    "ch/chgran31.wav",
-    "ch/chgran4.wav",
-    "ch/chgran5.wav",
     "ch/chgran6.wav",
-    "ch/chu1.wav",
     "ch/chu10.wav",
     "ch/chu11.wav",
-    "ch/chu12.wav",
-    "ch/chu13.wav",
-    "ch/chu14.wav",
-    "ch/chu15.wav",
-    "ch/chu16.wav",
     "ch/chu17.wav",
     "ch/chu18.wav",
-    "ch/chu19.wav",
-    "ch/chu2.wav",
-    "ch/chu3.wav",
     "ch/chu4.wav",
-    "ch/chu5.wav",
     "ch/chu6.wav",
-    "ch/chu7.wav",
     "ch/chu8.wav",
     "ch/chu9.wav",
-    "ch/ohu4.wav",
     "ch/ohu5.wav"
   ],
   "ch808": [
@@ -241,31 +212,24 @@
     "chirp/chirp13.wav",
     "chirp/chirp14.wav",
     "chirp/chirp15.wav",
-    "chirp/chirp16.wav",
     "chirp/chirp17.wav",
-    "chirp/chirp18.wav",
-    "chirp/chirp19.wav",
     "chirp/chirp2.wav",
     "chirp/chirp20.wav",
     "chirp/chirp21.wav",
-    "chirp/chirp3.wav",
-    "chirp/chirp4.wav",
     "chirp/chirp5.wav",
-    "chirp/chirp6.wav",
     "chirp/chirp7.wav",
     "chirp/chirp8.wav",
     "chirp/chirp9.wav",
-    "chirp/cp1.wav",
-    "chirp/cp10.wav",
-    "chirp/cp11.wav",
-    "chirp/cp2.wav",
     "chirp/cp3.wav",
     "chirp/cp4.wav",
     "chirp/cp5.wav",
-    "chirp/cp6.wav",
     "chirp/cp7.wav",
-    "chirp/cp8.wav",
     "chirp/cp9.wav"
+  ],
+  "conga808": [
+    "conga808/conga8081.wav",
+    "conga808/conga8082.wav",
+    "conga808/conga8083.wav"
   ],
   "cp": [
     "cp/cp15.wav",
@@ -352,20 +316,8 @@
     "fmsustained/fmsustained8.wav",
     "fmsustained/fmsustained9.wav"
   ],
-  "hc808": [
-    "hc808/hc8081.wav"
-  ],
   "hijack": [
     "hijack/hijack1.wav"
-  ],
-  "ht808": [
-    "ht808/ht8081.wav"
-  ],
-  "ht909": [
-    "ht909/ht9091.wav"
-  ],
-  "lc808": [
-    "lc808/lc8081.wav"
   ],
   "lead": [
     "lead/lead1.wav",
@@ -399,21 +351,6 @@
     "loperc/loperc7.wav",
     "loperc/loperc8.wav",
     "loperc/loperc9.wav"
-  ],
-  "lt808": [
-    "lt808/lt8081.wav"
-  ],
-  "lt909": [
-    "lt909/lt9091.wav"
-  ],
-  "mc808": [
-    "mc808/mc8081.wav"
-  ],
-  "mt808": [
-    "mt808/mt8081.wav"
-  ],
-  "mt909": [
-    "mt909/mt9091.wav"
   ],
   "nile": [
     "nile/nile1.wav",
@@ -511,6 +448,53 @@
     "padm/padm7.wav",
     "padm/padm8.wav"
   ],
+  "perc1": [
+    "perc1/perc1_1.wav",
+    "perc1/perc1_10.wav",
+    "perc1/perc1_11.wav",
+    "perc1/perc1_12.wav",
+    "perc1/perc1_13.wav",
+    "perc1/perc1_14.wav",
+    "perc1/perc1_2.wav",
+    "perc1/perc1_3.wav",
+    "perc1/perc1_4.wav",
+    "perc1/perc1_5.wav",
+    "perc1/perc1_6.wav",
+    "perc1/perc1_7.wav",
+    "perc1/perc1_8.wav",
+    "perc1/perc1_9.wav"
+  ],
+  "perc2": [
+    "perc2/perc2_1.wav",
+    "perc2/perc2_10.wav",
+    "perc2/perc2_11.wav",
+    "perc2/perc2_12.wav",
+    "perc2/perc2_2.wav",
+    "perc2/perc2_3.wav",
+    "perc2/perc2_4.wav",
+    "perc2/perc2_5.wav",
+    "perc2/perc2_6.wav",
+    "perc2/perc2_7.wav",
+    "perc2/perc2_8.wav",
+    "perc2/perc2_9.wav"
+  ],
+  "perc3": [
+    "perc3/perc3_1.wav",
+    "perc3/perc3_2.wav",
+    "perc3/perc3_3.wav",
+    "perc3/perc3_4.wav",
+    "perc3/perc3_5.wav"
+  ],
+  "pluck": [
+    "pluck/pluck1.wav",
+    "pluck/pluck2.wav",
+    "pluck/pluck3.wav",
+    "pluck/pluck4.wav",
+    "pluck/pluck5.wav",
+    "pluck/pluck6.wav",
+    "pluck/pluck7.wav",
+    "pluck/pluck8.wav"
+  ],
   "rc808": [
     "rc808/rc8081.wav",
     "rc808/rc8082.wav",
@@ -528,24 +512,19 @@
     "rim/rim11.wav",
     "rim/rim12.wav",
     "rim/rim13.wav",
-    "rim/rim14.wav",
     "rim/rim2.wav",
     "rim/rim3.wav",
-    "rim/rim4.wav",
     "rim/rim5.wav",
     "rim/rim6.wav",
     "rim/rim7.wav",
     "rim/rim8.wav",
     "rim/rim9.wav",
     "rim/rssb1.wav",
-    "rim/rssb10.wav",
-    "rim/rssb11.wav",
     "rim/rssb2.wav",
     "rim/rssb3.wav",
     "rim/rssb4.wav",
     "rim/rssb5.wav",
     "rim/rssb6.wav",
-    "rim/rssb7.wav",
     "rim/rssb8.wav",
     "rim/rssb9.wav"
   ],
@@ -594,6 +573,16 @@
   ],
   "sd808": [
     "sd808/sd8081.wav"
+  ],
+  "tom808": [
+    "tom808/tom8081.wav",
+    "tom808/tom8082.wav",
+    "tom808/tom8083.wav"
+  ],
+  "tom909": [
+    "tom909/tom9091.wav",
+    "tom909/tom9092.wav",
+    "tom909/tom9093.wav"
   ],
   "uh": [
     "uh/uh1.wav",

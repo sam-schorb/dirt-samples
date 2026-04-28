@@ -17,6 +17,7 @@ from .config import repo_root
 from .level_features import compute_peak_rms_dbfs
 
 SUPPORTED_EXT = {".wav", ".aif", ".aiff", ".flac"}
+EXCLUDED_DIRS = {"_pruned"}
 CSV_COLUMNS = [
     "rel_path",
     "folder",
@@ -41,7 +42,7 @@ CSV_COLUMNS = [
 def find_audio_files(root_dir: Path, filter_prefix: Optional[str], limit: Optional[int]) -> List[Path]:
     files: List[Path] = []
     for dirpath, dirnames, filenames in os.walk(root_dir):
-        dirnames[:] = [d for d in dirnames if not d.startswith(".")]
+        dirnames[:] = [d for d in dirnames if not d.startswith(".") and d not in EXCLUDED_DIRS]
         for fname in filenames:
             if fname.startswith("."):
                 continue

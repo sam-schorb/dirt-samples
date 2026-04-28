@@ -10,11 +10,52 @@ normalize:
   use_active_rms: true
   active_rms_floor_db: -60.0
   folder_targets_rms_dbfs:
+    bassacid: -14.0
+    basshit: -14.0
+    basssb: -14.0
+    bassu: -14.0
+    bassuu: -14.0
+    basswt: -14.0
     bd: -10.0
-    bdu: -10.0
-    ch: -18.0
-    oh: -18.0
-    sd: -14.0
+    bdd: -10.0
+    bdr: -10.0
+    bdsyn: -16.0
+    beeph: -16.0
+    beepl: -16.0
+    beepm: -16.0
+    cb808: -18.0
+    ch: -20.0
+    ch808: -20.0
+    chirp: -18.0
+    conga808: -10.0
+    cp: -16.0
+    flangeNoise: -22.0
+    fmhits: -18.0
+    fmsustained: -18.0
+    hijack: -18.0
+    lead: -16.0
+    loperc: -16.0
+    nile: -18.0
+    oh: -20.0
+    oh808: -20.0
+    padh: -22.0
+    padl: -22.0
+    padm: -22.0
+    perc1: -18.0
+    perc2: -18.0
+    perc3: -18.0
+    pluck: -18.0
+    rc808: -22.0
+    rc909: -22.0
+    rim: -18.0
+    sd: -18.0
+    sd313: -18.0
+    sd808: -18.0
+    tom808: -18.0
+    tom909: -18.0
+    uh: -20.0
+    vocal: -18.0
+    wood: -18.0
   fallback_rms_dbfs: -16.0
 features:
   similarity_columns:
