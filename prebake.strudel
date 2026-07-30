@@ -5,7 +5,14 @@ samples('github:sam-schorb/dirt-samples')
 
 samples('github:bubobubobubobubo/dough-waveforms')
 
-setcpm(132/4)
+// ---------------------------------------------------------
+// SETUP
+// ---------------------------------------------------------
+
+
+setcps(135 / 60 / 4)
+
+const KEY = 'A:minor'
 
 
 // ---------------------------------------------------------
@@ -193,6 +200,284 @@ window.incidentals =
 
 
 // ---------------------------------------------------------
+// KEY
+// ---------------------------------------------------------
+
+// Strictly diatonic:
+// const CHORD_OVERRIDES = {}
+
+// These give D major and E major in A minor,
+// matching: Am C D F Am E Am E
+
+const CHORD_OVERRIDES = {
+  4: 'maj',
+  5: 'maj',
+}
+
+
+// ---------------------------------------------------------
+// KEY BUILDER
+// ---------------------------------------------------------
+
+const NOTE_NAMES = [
+  'C',
+  'C#',
+  'D',
+  'D#',
+  'E',
+  'F',
+  'F#',
+  'G',
+  'G#',
+  'A',
+  'A#',
+  'B',
+]
+
+const NOTE_INDEX = {
+  C: 0,
+  'C#': 1,
+  Db: 1,
+  D: 2,
+  'D#': 3,
+  Eb: 3,
+  E: 4,
+  F: 5,
+  'F#': 6,
+  Gb: 6,
+  G: 7,
+  'G#': 8,
+  Ab: 8,
+  A: 9,
+  'A#': 10,
+  Bb: 10,
+  B: 11,
+}
+
+const MODES = {
+  major: {
+    steps: [
+      0, 2, 4, 5, 7, 9, 11,
+    ],
+
+    qualities: [
+      'maj',
+      'min',
+      'min',
+      'maj',
+      'maj',
+      'min',
+      'dim',
+    ],
+  },
+
+  minor: {
+    steps: [
+      0, 2, 3, 5, 7, 8, 10,
+    ],
+
+    qualities: [
+      'min',
+      'dim',
+      'maj',
+      'min',
+      'min',
+      'maj',
+      'maj',
+    ],
+  },
+
+  dorian: {
+    steps: [
+      0, 2, 3, 5, 7, 9, 10,
+    ],
+
+    qualities: [
+      'min',
+      'min',
+      'maj',
+      'maj',
+      'min',
+      'dim',
+      'maj',
+    ],
+  },
+
+  phrygian: {
+    steps: [
+      0, 1, 3, 5, 7, 8, 10,
+    ],
+
+    qualities: [
+      'min',
+      'maj',
+      'maj',
+      'min',
+      'dim',
+      'maj',
+      'min',
+    ],
+  },
+
+  harmonicMinor: {
+    steps: [
+      0, 2, 3, 5, 7, 8, 11,
+    ],
+
+    qualities: [
+      'min',
+      'dim',
+      'aug',
+      'min',
+      'maj',
+      'maj',
+      'dim',
+    ],
+  },
+}
+
+const QUALITY_SUFFIX = {
+  maj: '',
+  major: '',
+
+  min: 'm',
+  minor: 'm',
+
+  dim: 'o',
+  diminished: 'o',
+
+  aug: 'aug',
+  augmented: 'aug',
+}
+
+const makeKey = (
+  keyName,
+  alterations = {}
+) => {
+  const [
+    tonic,
+    modeName = 'minor',
+  ] = keyName.split(':')
+
+  const tonicIndex = NOTE_INDEX[tonic]
+  const mode = MODES[modeName]
+
+  if (tonicIndex === undefined) {
+    throw new Error(
+      'Unknown key tonic: ' + tonic
+    )
+  }
+
+  if (!mode) {
+    throw new Error(
+      'Unknown mode: ' + modeName
+    )
+  }
+
+  return Object.fromEntries(
+    mode.steps.map((step, index) => {
+      const degree = index + 1
+
+      const quality =
+        Object.prototype.hasOwnProperty.call(
+          alterations,
+          degree
+        )
+          ? alterations[degree]
+          : mode.qualities[index]
+
+      const suffix =
+        Object.prototype.hasOwnProperty.call(
+          QUALITY_SUFFIX,
+          quality
+        )
+          ? QUALITY_SUFFIX[quality]
+          : quality
+
+      const root =
+        NOTE_NAMES[
+          (tonicIndex + step) % 12
+        ]
+
+      return [
+        degree,
+        root + suffix,
+      ]
+    })
+  )
+}
+
+const KEY_CHORDS = makeKey(
+  KEY,
+  CHORD_OVERRIDES
+)
+
+
+// ---------------------------------------------------------
+// CUSTOM FUNCTIONS
+// ---------------------------------------------------------
+
+// Numeric progression -> chord symbols -> voicing
+
+const vch = register(
+  'vch',
+  pat =>
+    pat
+      .pick(KEY_CHORDS)
+      .voicing()
+)
+
+
+// .duck(0.4)
+
+register(
+  'duck',
+  (amount, pat) =>
+    pat
+      .duckorbit("2:3:4:5")
+      .duckdepth(amount)
+)
+
+
+// .verb(0.8)
+
+register(
+  'verb',
+  (amount, pat) =>
+    pat
+      .room(amount)
+      .sz(amount)
+)
+
+
+// .space(slider(0, 0, 0.7))
+
+register(
+  'space',
+  (wet, pat) =>
+    pat.superimpose(
+      x =>
+        x
+          .delay(1)
+          .delayfb(0.6)
+          .gain(wet)
+    )
+)
+
+
+// =========================================================
+// LIVE CODE
+// =========================================================
+
+// 1 = tonic
+// 2 = second chord
+// 3 = third chord
+// 4 = fourth chord
+// 5 = fifth chord
+// 6 = sixth chord
+// 7 = seventh chord
+
+// ---------------------------------------------------------
 // CANONICAL PATTERN DATA (no note(), no n())
 // everything is just strings
 // ---------------------------------------------------------
@@ -245,9 +530,13 @@ const bin = str =>
   n(str).set(n(0))
 
 
+
+
 // ---------------------------------------------------------
 // USAGE EXAMPLES
 // ---------------------------------------------------------
+
+
 
 // $: mel(polymel3).s("wt_10")
 
@@ -260,3 +549,94 @@ const bin = str =>
 // $: mel(polymel4).s("lead:2").slow(8).off(0.125, x => x.note(add(7))).every(2, jux(rev)).superimpose(x => x.fast(2)).speed(0.5).gain(0.5).chunk(4, hurry(2))
 
 
+// ---------------------------------------------------------
+// HIGH ARPEGGIO
+// ---------------------------------------------------------
+
+let p = "<1 3 6 5 1 7 2 4>"
+
+
+// $: vch(p)
+//   .trans(-12)
+//   .arp(
+//     "0 3 2 4 <2 8> 5 4 <6 7>"
+//       .fast(4)
+//   )
+//   .lpenv(4)
+//   .lpf(
+//     saw
+//       .rangex(100, 2000)
+//       .slow(8)
+//   )
+//   .s("supersaw")
+//   .lpdecay(0.1)
+//   .detune(0.6)
+//   .fm(0.8)
+//   .fmwave("noise")
+//   .hpf(800)
+//   .verb(0.8)
+//   .o(3)
+//   .space(
+//     slider(
+//       0.7,
+//       0,
+//       0.7
+//     )
+//   )
+
+
+
+// ---------------------------------------------------------
+// LOW ARPEGGIO
+// ---------------------------------------------------------
+
+$: vch(p)
+  .trans(-24)
+  .arp(
+    "0 5".fast(8)
+  )
+  .lpenv(2)
+  .lpf(
+    saw
+      .rangex(100, 200)
+      .slow(8)
+  )
+  .s("supersaw")
+  .lpdecay(0.2)
+  .detune(0.6)
+  .o(3)
+
+
+
+
+// ---------------------------------------------------------
+// RHYTHMIC CHORD PATTERN
+// ---------------------------------------------------------
+
+$: vch(p)
+  .trans(-24)
+  .beat(
+    "0, 3, 6".fast(16),
+    8
+  )
+  .lpenv(2)
+  .lpf(
+    saw
+      .rangex(600, 2000)
+      .slow(8)
+  )
+  .s("supersaw")
+  .lpdecay(0.2)
+  .detune(0.6)
+  .hpf(600)
+  .o(3)
+
+
+
+
+// ---------------------------------------------------------
+// KICK + SIDECHAIN
+// ---------------------------------------------------------
+
+$: s("bd:4*4")
+  .duck(0.4)
